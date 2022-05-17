@@ -1,79 +1,24 @@
-import axios from "axios";
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
+import App from "./App";
+import { createStore, applyMiddleware, compose } from "redux";
+import thunk from "redux-thunk";
+import { Provider } from "react-redux";
+import rootReducer from "./redux/reducers/index.js";
 
-export function getGames() {
-  return async function (dispatch) {
-    try {
-      const resp = await axios.get(
-        "https://henry-game.herokuapp.com/videogames"
-      );
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-      if (resp) {
-        dispatch({ type: "GET_GAMES", payload: resp.data });
-      }
-    } catch (err) {
-      console.log(err, "error getgames");
-    }
-  };
-}
+const store = createStore(
+  rootReducer,
+  composeEnhancers(applyMiddleware(thunk))
+);
 
-export function getGenres() {
-  return async function (dispatch) {
-    try {
-      const resp = await axios.get("https://henry-game.herokuapp.com/genres");
-
-      if (resp) {
-        dispatch({ type: "GET_GENRES", payload: resp.data });
-      }
-    } catch (err) {
-      console.log(err, "error getgenres");
-    }
-  };
-}
-
-export function getResults(game) {
-  return async function (dispatch) {
-    try {
-      const resp = await axios.get(
-        `https://henry-game.herokuapp.com/search?name=${game}`
-      );
-
-      if (resp) {
-        dispatch({ type: "GET_RESULTS", payload: resp.data.results });
-      }
-    } catch (err) {
-      console.log(err, "error getresults");
-    }
-  };
-}
-
-export function clearResults() {
-  return async function (dispatch) {
-    dispatch({ type: "CLEAR_RESULTS" });
-  };
-}
-
-export function setGamesPerPage(page) {
-  return async function (dispatch) {
-    dispatch({ type: "SET_GAMESPERPAGE", payload: parseInt(page) });
-  };
-}
-
-export function addGame(props) {
-  return async function (dispatch) {
-    try {
-      const resp = await axios.post(
-        "https://henry-game.herokuapp.com/create",
-        props
-      );
-
-      if (resp) {
-        dispatch({
-          type: "ADD_GAME",
-          payload: props.entries ? Object.fromEntries(props.entries()) : props,
-        });
-      }
-    } catch (err) {
-      console.log(err, "error addgame");
-    }
-  };
-}
+ReactDOM.render(
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>,
+  document.getElementById("root")
+);
