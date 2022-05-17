@@ -65,7 +65,9 @@ export function setGames(games, dispatch) {
 }
 
 export async function getGame(id) {
-  const resp = await axios.get(`https://pi-rodri.herokuapp.com/game?id=${id}`);
+  const resp = await axios.get(
+    `https://henry-game.herokuapp.com/game?id=${id}`
+  );
 
   return resp.data;
 }

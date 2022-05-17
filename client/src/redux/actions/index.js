@@ -3,7 +3,9 @@ import axios from "axios";
 export function getGames() {
   return async function (dispatch) {
     try {
-      const resp = await axios.get("https://pi-rodri.herokuapp.com/videogames");
+      const resp = await axios.get(
+        "https://henry-game.herokuapp.com/videogames"
+      );
 
       if (resp) {
         dispatch({ type: "GET_GAMES", payload: resp.data });
@@ -17,7 +19,7 @@ export function getGames() {
 export function getGenres() {
   return async function (dispatch) {
     try {
-      const resp = await axios.get("https://pi-rodri.herokuapp.com/genres");
+      const resp = await axios.get("https://henry-game.herokuapp.com/genres");
 
       if (resp) {
         dispatch({ type: "GET_GENRES", payload: resp.data });
@@ -32,7 +34,7 @@ export function getResults(game) {
   return async function (dispatch) {
     try {
       const resp = await axios.get(
-        `https://pi-rodri.herokuapp.com/search?name=${game}`
+        `https://henry-game.herokuapp.com/search?name=${game}`
       );
 
       if (resp) {
@@ -60,7 +62,7 @@ export function addGame(props) {
   return async function (dispatch) {
     try {
       const resp = await axios.post(
-        "https://pi-rodri.herokuapp.com/create",
+        "https://henry-game.herokuapp.com/create",
         props
       );
 
