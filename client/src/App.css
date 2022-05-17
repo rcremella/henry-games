@@ -1,0 +1,47 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #3b3b3b;
+}
+
+p,
+input,
+textarea {
+  font-family: sans-serif;
+}
+::-webkit-input-placeholder {
+  font-family: sans-serif;
+}
+:-moz-placeholder {
+  font-family: sans-serif;
+}
+::-moz-placeholder {
+  font-family: sans-serif;
+}
+:-ms-input-placeholder {
+  font-family: sans-serif;
+}
+
+span {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  text-align: center;
+  font-family: BentonSans Medium, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
