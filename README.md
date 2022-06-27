@@ -1,3 +1,5 @@
+Deploy: https://henry-games-omega.vercel.app/
+
 Henry Games es una SPA (single page application) de videojuegos, donde se puede ver información sobre los juegos tales como su descripción, calificaciones y plataformas. De mismo modo podemos añadir nuestros juegos favoritos 🎮
 
 Desarrollé este proyecto para la evaluación individual del bootcamp Henry. La web cuenta con las siguientes características:
@@ -14,5 +16,3 @@ Tecnologías:
 - Back-End: NodeJS, Express, Sequelize, Heroku
 - Base de datos: PostgreSql
 - Micro Servicios: Cloudinary
-
-Deploy: https://henry-games-omega.vercel.app/
