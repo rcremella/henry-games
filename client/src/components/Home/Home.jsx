@@ -4,6 +4,7 @@ import { Product, Loader } from "../index";
 import { Link, useNavigate } from "react-router-dom";
 import { ratingFilter, newestFilter, moreReviewsFilter } from "../../functions";
 import Carrousel from "./Carrousel";
+import { useEffect } from "react";
 
 const Container = s.div`
  width: 94%;
@@ -14,6 +15,10 @@ const Container = s.div`
  
  position: relative;
  margin-top: 30px;
+
+ @media (max-width: 900px) {
+  width: 100%;
+ }
 `;
 
 const Seccion = s.div`
@@ -29,9 +34,11 @@ const Seccion = s.div`
  justify-content: space-evenly;
 
  width: 90%;
-//  @media (min-width: 1000px) {
-//   background-color: red;
-// }
+
+ @media (max-width: 900px) {
+  width: 100%;
+  border-radius: 0;
+ }
 `;
 
 const Span = s.span`
@@ -42,34 +49,49 @@ const Span = s.span`
 `;
 
 const Button = s.button`
-  // background-color: black;
   background: rgb(0,0,0);
-// background: linear-gradient(210deg, rgba(0,0,0,0.7525210767900911) 23%, rgba(135,135,135,1) 70%);
   color: white;
   cursor:pointer;
   font-weight: bold;
   position: absolute;
   right: 109px;
-  top: -55px;
+  top: -10px;
   font-size: 15px;
   padding: 10px 15px;
   border-radius: 5px 5px 5px 5px;
   border-width: 0px;
+  z-index: 2;
 
-  //  @media (max-width: 1000px) {
-  //  background-color: red;
-  //  }
+   @media (max-width: 900px) {
+    top: 25px; 
+    right: 10%;
+   }
 `;
 
 const Category = s.div`
  display: flex;
- justify-content: center;
- width: 100%
+ padding-left: 1%;
+
+ width: 98%;
+ overflow-x: scroll;
+
+ -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  
 `;
 
 export default function Rodri() {
   const games = useSelector((state) => state.originalGames);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return games.length ? (
     <>
@@ -81,7 +103,7 @@ export default function Rodri() {
           <Span>Los más destacados</Span>
           <Category>
             {moreReviewsFilter([...games])
-              .slice(0, 5)
+              .slice(0, 7)
               .map((game) => {
                 return (
                   <Link to={`/game/${game.id}`} key={game.id}>
@@ -96,7 +118,7 @@ export default function Rodri() {
           <Span>Mejores calificados</Span>
           <Category>
             {ratingFilter([...games])
-              .slice(0, 5)
+              .slice(0, 7)
               .map((game) => {
                 return (
                   <Link to={`/game/${game.id}`} key={game.id}>
@@ -111,7 +133,7 @@ export default function Rodri() {
           <Span>Los más nuevos</Span>
           <Category>
             {newestFilter([...games])
-              .slice(0, 5)
+              .slice(0, 7)
               .map((game) => {
                 return (
                   <Link to={`/game/${game.id}`} key={game.id}>

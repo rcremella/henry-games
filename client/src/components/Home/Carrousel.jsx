@@ -10,24 +10,35 @@ const Container = s.div`
   align-items: center;
   height: 300px;
   width: 80%;
+  max-width: 1100px;
   margin-top: 70px;
-  // margin-bottom: 70px;
+
   position: relative;
-  border-radius: 5px 5px 5px 5px;                                 
+  border-radius: 5px 5px 5px 5px; 
+  
+  @media (max-width: 1100px) {
+    height: 280px;
+    width: 90%;
+   }
+
+   @media (max-width: 940px) {
+    height: 250px;
+    width: 100%;
+   }
 `;
 
 const Banners = s.div`
   position: relative;
-  width: 750px;
-  height: 300px;
+  width: 75%;
+  height: 100%;
   object-fit: cover;
   border-radius: 5px 5px 5px 5px;
 `;
 
 const Banner = s.img`
   position: absolute;
-  width: 750px;
-  height: 300px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   border-radius: 5px 5px 5px 5px;
   z-index: 1;
@@ -35,11 +46,11 @@ const Banner = s.img`
 
 const PrevBanner = s.img`
   position: absolute;
-  width: 90px;
-  height: 260px;
+  width: 10%;
+  height: 90%;
   
   top: 18px;
-  left: -80px;
+  left: -8%;
   object-fit: cover;
   object-position: left;
   border-radius: 5px 5px 5px 5px;
@@ -51,10 +62,10 @@ const PrevBanner = s.img`
 
 const NextBanner = s.img`
   position: absolute;
-  width: 90px;
-  height: 260px;
+  width: 10%;
+  height: 90%;
   top: 18px;
-  right: -80px;
+  right: -8%;
   object-fit: cover;
   object-position: right;
   border-radius: 5px 5px 5px 5px;
@@ -64,31 +75,49 @@ const NextBanner = s.img`
 `;
 
 const PrevButton = s.img`
-  height: 35px;
-  width: 50px;
-  position: absolute;
-  top: 45%;
-  left: 175px;
-  z-index: 1;
+  height: 100%;
+  width: 100%;
+
+  object-fit: cover;
   
   // Transparentar el fondo del logo 
   filter: invert(1.1);
-  // mix-blend-mode: multiply;
+
+  &: hover {
+    filter: none;
+  }
 `;
 
 const NextButton = s.img`
-  height: 35px;
-  width: 50px;
-  position: absolute;
-  top: 45%;
-  right: 175px;
+  height: 100%;
+  width: 100%;
+
+  object-fit: cover;
+ 
   transform: rotate(180deg);
-  z-index: 1;
 
   // Transparentar el fondo del logo 
   filter: invert(1.1);
-  // mix-blend-mode: multiply;
-  
+
+  &: hover {
+    filter: none;
+  }
+`;
+
+const Button = s.div`
+  height: 35px;
+  width: 35px;
+
+  position: absolute;
+  top: 45%;
+  z-index: 2;
+
+  border-radius: 100px;
+
+  &: hover {
+    background-color: #ffffff78;
+    cursor: pointer;
+  }
 `;
 
 export default function Carrousel() {
@@ -139,20 +168,25 @@ export default function Carrousel() {
 
   return (
     <Container>
-      <PrevButton
-        src={arrow}
-        name={prev}
-        onClick={() => {
-          onClick(prev);
-        }}
-      ></PrevButton>
-      <NextButton
-        src={arrow}
-        name={next}
-        onClick={() => {
-          onClick(next);
-        }}
-      ></NextButton>
+      <Button style={{ left: "8%" }}>
+        <PrevButton
+          src={arrow}
+          name={prev}
+          onClick={() => {
+            onClick(prev);
+          }}
+        ></PrevButton>
+      </Button>
+
+      <Button style={{ right: "8%" }}>
+        <NextButton
+          src={arrow}
+          name={next}
+          onClick={() => {
+            onClick(next);
+          }}
+        ></NextButton>
+      </Button>
 
       <Banners>
         <PrevBanner key={getIndex(prev)} src={imagesArray[getIndex(prev)]} />

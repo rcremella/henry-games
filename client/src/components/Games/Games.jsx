@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import s from "styled-components";
 import { Game, Loader } from "./../index";
 import { Link } from "react-router-dom";
-// import { setPages } from "../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 import { setPages, setGames, setFilters } from "../../functions";
 
@@ -68,6 +67,10 @@ const GameLink = s(Link)`
 
 export default function Games() {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const originalGames = useSelector((state) => state.originalGames),
     games = useSelector((state) => state.games),

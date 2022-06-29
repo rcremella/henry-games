@@ -20,6 +20,11 @@ const Container = s.div`
     font-size: 15px;
     border-radius: 0px 0px 8px 8px; 
     z-index: 10;
+
+    @media (max-width: 900px) {
+      width: 100%;
+      border-radius: 0px;
+     }
 `;
 
 const Logo = s.img`
@@ -29,8 +34,15 @@ const Logo = s.img`
 `;
 
 const LinkTo = s(Link)`
+  height: 20px;
   color: white;
   text-decoration: none;
+`;
+
+const Input = s.input`
+  padding: 5px 3px;
+  border: none;
+  border-radius: 2px;
 `;
 
 export default function Bar() {
@@ -46,15 +58,15 @@ export default function Bar() {
 
   return (
     <Container>
-      <LinkTo to="/home">
+      <Link to="/home">
         <Logo src={logo} />
-      </LinkTo>
+      </Link>
       <LinkTo to="/home">Inicio</LinkTo>
       <LinkTo to="/genres">Generos</LinkTo>
       <LinkTo to="/create">Crear</LinkTo>
       <LinkTo to="/about">Acerca de</LinkTo>
       <LinkTo to="/login">Login</LinkTo>
-      <input type="text" placeholder="Buscar" onKeyDown={(e) => handleKey(e)} />
+      <Input type="text" placeholder="Buscar" onKeyDown={(e) => handleKey(e)} />
     </Container>
   );
 }

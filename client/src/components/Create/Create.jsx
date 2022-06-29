@@ -121,6 +121,8 @@ export default function Create() {
     setMessage(JSON.parse(localStorage.getItem("game")));
 
     localStorage.removeItem("flag");
+
+    window.scrollTo(0, 0);
   }, []);
 
   const date = new Date(),

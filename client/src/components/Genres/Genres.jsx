@@ -2,6 +2,7 @@ import s from "styled-components";
 import { Genre, Loader } from "../index";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const Container = s.div`
  width: 95%
@@ -26,6 +27,10 @@ const GenresCont = s.div`
 
 export default function Genres() {
   const genres = useSelector((state) => state.genres);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return genres.length ? (
     <Container>

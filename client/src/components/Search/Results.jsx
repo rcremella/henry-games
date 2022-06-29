@@ -3,6 +3,7 @@ import { Game, Loader } from "../index";
 import { ratingFilter } from "../../functions";
 import { Link } from "react-router-dom";
 import s from "styled-components";
+import { useEffect } from "react";
 
 const Container = s.div`
   display: grid;
@@ -24,6 +25,10 @@ export default function Results() {
   const results = useSelector((state) => state.results).filter(
     (result) => result.background_image
   );
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return results[0] ? (
     <Container>
